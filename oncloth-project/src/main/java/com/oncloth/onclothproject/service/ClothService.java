@@ -43,7 +43,7 @@ public class ClothService {
     public Optional<Cloth> update(Long id, ClothModify clothModify){
         Optional<Cloth> originalcloth = clothRepository.findById(id);
 
-//        //create new image info
+//        //create new image info // *파일 수정관련
 //        UUID uuid = UUID.randomUUID();
 //        String filename = uuid + "_" + file.getOriginalFilename();
 //
@@ -57,7 +57,7 @@ public class ClothService {
             u.setCustomcategory(clothModify.getCustomcategory());
             u.setLocation(clothModify.getLocation());
             u.setDescription(clothModify.getDescription());
-//            u.setImagename(filename);
+//            u.setImagename(filename); // *파일 수정관련
 //            u.setImagepath("/files/"+filename);
             clothRepository.save(u);
         });

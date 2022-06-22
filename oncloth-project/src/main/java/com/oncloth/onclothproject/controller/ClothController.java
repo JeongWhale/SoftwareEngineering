@@ -35,7 +35,7 @@ public class ClothController {
     }
 
     //옷 수정페이지에서 수정확인 버튼 클릭
-    @PostMapping("api/cloth/modify/{id}")
+    @PostMapping("/api/cloth/modify/{id}")
     public Optional<Cloth> update(@PathVariable("id") Long id, @RequestBody ClothModify clothModify) {
         return clothService.update(id, clothModify);
     }
