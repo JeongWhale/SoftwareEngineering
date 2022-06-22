@@ -23,6 +23,7 @@
     justify-content: space-around;
     background-color: rgb(195, 231, 255);
     margin: 1rem 5rem;
+    border-radius: 0.725rem;
 }
 
 .mainWeather button{
@@ -34,31 +35,52 @@
     margin: 1rem;
     font-size: 2.5rem;
     font-weight: 600;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
 }
 
 .MyStyleList{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 350px;
+    height: 250px;
     background-color: rgb(188, 228, 255);
     overflow: scroll;
     margin: 1rem 0rem;
+    border-radius: 0.725rem;
 }
 
-.MyStyleList button{
+.myStyleListBlock{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem;
-    padding: 1rem;
-    border-radius: 3rem;
-    border: none;
-    font-size: 1.25rem;
 }
 
-.altImg{
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
+.customButton{
+    margin: 0.125rem 2rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.25rem;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
     background-color: beige;
+}
+
+.myStylebutton{
+    padding: 0.25rem 1rem;
+    border: none;
+    background-color: rgb(154, 205, 255);
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+
+.myStylebutton:first-child{
+    margin-right: 1rem;
+}
+
+.myStylebutton:hover{
+    background-color: rgb(211, 237, 255);
 }

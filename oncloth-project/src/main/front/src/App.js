@@ -33,7 +33,7 @@ function App() {
       <Route path="/:season" element = {<CategoryList />}/>
       <Route path="/addcloth" element= {<AddCloth />} />
       <Route path='/searchcloth/:name' element={<ClothSearchPage />} />
-      <Route path="/editcloth/:id" element ={<EditClothPage />}/>
+      <Route path="/editcloth/:id" element ={<EditCloth />}/>
       <Route path="/clothlist" element = {<ClothList name = "안녕" />}/>
       <Route path="/editUser" element = {<EditUserPage />}/>
       <Route path="/trashbin" element = {<TrashBin /> } />

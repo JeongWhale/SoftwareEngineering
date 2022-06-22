@@ -5,6 +5,7 @@ import Button from '../../base/Button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import "../style/clothList.css";
 const styled = {
   position: 'absolute',
   top: '50%',
@@ -37,11 +38,13 @@ const ClothList = ({clothList}) => {
     };
     return(
         <>
-          {clothList.map(cloth => (
-            <div>
-              <img onClick={(e) => handleOpen(e, cloth)} src={cloth.imagepath} alt={cloth.imagename} />
-            </div>
-          ))}
+          <div className='clothListBlock'>
+            {clothList.map(cloth => (
+              <div>
+                <img style={{"width": "250px"}} onClick={(e) => handleOpen(e, cloth)} src={cloth.imagepath} alt={cloth.imagename} />
+              </div>
+            ))}
+          </div>
           <Modal
                 open={open}
                 onClose={handleClose}
@@ -52,12 +55,19 @@ const ClothList = ({clothList}) => {
                     {/* <Typography id="modal-modal-title" variant="h6" component="h2">
                         새로운 창입니다.
                     </Typography> */}
-                    <h2>{clothData.description}</h2>
-                    <img src={clothData.imagepath} alt={clothData.imagename} />
-                    <span>{clothData.location}</span>
-                    <div>
-                      <Link to={`/editcloth/${clothData.id}`}><Button>수정하기</Button></Link> 
-                      <Button onClick={onClickGoToTrashBin}>삭제하기</Button>
+                    <div className='clothDetailBlock'>
+                      <h2 className='clothDetailTitle'>{clothData.description}</h2>
+                      <div className='clothDetailContentBlock'>
+                          <img className='clothDetailImg' src={clothData.imagepath} alt={clothData.imagename} />
+                          <div className='clothDetailDataBlock'>
+                              <span>이 옷은?</span>
+                              <span className='clothDetailLocation'>{clothData.location}에 있습니다!</span>
+                          </div>
+                      </div>
+                      <div className='clothDetailButton'>
+                        <Link to={`/editcloth/${clothData.id}`}><Button>수정하기</Button></Link> 
+                        <Button onClick={onClickGoToTrashBin}>삭제하기</Button>
+                      </div>
                     </div>
                 </Box>
               </Modal>

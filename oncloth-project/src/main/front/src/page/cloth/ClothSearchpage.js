@@ -13,6 +13,7 @@ const ClothSearchPage = () => {
     return(
         <div>
             <Header />
+            <h1>{`${name}에 대한 검색 결과입니다.`}</h1>
             <ClothList clothList={clothlist} />
         </div>
     )
