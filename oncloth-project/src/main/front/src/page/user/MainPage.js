@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Header from "../../base/Header";
 import CustomCategoryList from "../cloth/CustomCategoryList";
-import style from "../style/MainPage.css"
+import style from "../style/MainPage.css";
+import spring from "../../base/spring.jpg";
+import summer from "../../base/summer.jpg";
+import authum from "../../base/authum.jpg";
+import winter from "../../base/winter.jpg";
 
 const MainPage = () => {
     let user = JSON.parse(localStorage.getItem('user'));
@@ -16,10 +20,10 @@ const MainPage = () => {
                 <div>
                     <Header/>
                     <div className="mainWeather">
-                        <Link to="/spring"><button>봄</button></Link>
-                        <Link to="/summer"><button>여름</button></Link>
-                        <Link to="/autumn"><button>가을</button></Link>
-                        <Link to="/winter"><button>겨울</button></Link>
+                        <Link to="/spring"><button style={{"backgroundImage": `url(${spring})`}}>봄</button></Link>
+                        <Link to="/summer"><button style={{"backgroundImage": `url(${summer})`}}>여름</button></Link>
+                        <Link to="/autumn"><button style={{"backgroundImage": `url(${authum})`}}>가을</button></Link>
+                        <Link to="/winter"><button style={{"backgroundImage": `url(${winter})`}}>겨울</button></Link>
                     </div>
                     <CustomCategoryList />
                 </div>

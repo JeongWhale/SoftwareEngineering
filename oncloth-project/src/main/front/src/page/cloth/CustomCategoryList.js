@@ -23,20 +23,52 @@ const styled = {
 
 const CustomCategoryList = () => {
     const [CustomCategories, setCustomCategories] = useState([]);
+    const [editCustomCategory, setEditCustomCategory] = useState("");
+    const [id, setId] = useState("");
     const navigate = useNavigate();
+
     useEffect(() => {
         axios.get("/api/customcategory/list/")
         .then(response => {
-            console.log(response);
             setCustomCategories(response.data);
-            console.log(CustomCategories);
         })
         .catch(e => alert(e));
     }, [])
+
+
     const [newCustomCategory, setNewCustomCategory] = useState("");
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [editOpen, setEditOpen] = useState(false);
+    const handleEditOpen = (category) => {
+        setEditOpen(true);
+        setEditCustomCategory(category.name);
+        setId(category.id);
+    }
+    const handleEditClose = () => setEditOpen(false);
+
+    const onChangeEditCustomCategory = (e) => {
+        setEditCustomCategory(e.target.value);
+    }
+
+    const onSubmitEditCustomCategory = (e) => {
+        e.preventDefault();
+        axios.post(`/api/customcategory/${id}/update/`, {name: editCustomCategory})
+        .then(response => console.log(response))
+        .catch(e => alert(e));
+        window.location.reload();
+    }
+
+    const onClickRemoveCategory = (e, category) => {
+        e.preventDefault();
+        axios.post(`/api/customcategory/${category.id}/remove/`)
+        .then(response => console.log(response))
+        .catch(e => alert(e));
+        window.location.reload();
+    }
+
     const onChangeNewCustomCategory = (e) => {
         setNewCustomCategory(e.target.value);
     }
@@ -54,14 +86,21 @@ const CustomCategoryList = () => {
 
     }
     return (
-        <div style={{"margin": "1rem 5rem"}}>
+        <div style={{"margin": "1rem 5rem",}}>
             <Button onClick={handleOpen} style={{"margin-left": "5rem"}}>my style 생성</Button>
             <div className="MyStyleList">
                 {CustomCategories.map((category, index) => 
-                (<Link to={`/customcategory/${category.id}`}><button key={index}>
-                    <div className="altImg"></div>
-                    <span>{category.name}</span>
-                </button></Link>))}
+                (<div className='myStyleListBlock'>
+                    <Link to={`/customcategory/${category.id}`}>
+                        <button className='customButton' key={index}>
+                        <span style={{"fontSize": "1.5rem", "fontWeight": "500"}}>{category.name}</span>
+                        </button>
+                    </Link>
+                    <div style={{"display": "flex"}}>
+                        <button className='myStylebutton' onClick={() => (handleEditOpen(category))}>수정</button>
+                        <button className='myStylebutton' onClick={(e) => onClickRemoveCategory(e, category)}>삭제</button>
+                    </div>
+                </div>))}
             </div>
             <Modal
                 open={open}
@@ -72,6 +111,18 @@ const CustomCategoryList = () => {
                 <Box sx={styled}>
                     <input value={newCustomCategory} onChange={onChangeNewCustomCategory} type="text" placeholder="카테고리 이름을 입력해주세요"/>
                     <Button onClick={onSubmitNewCustomCategory}>저장</Button>
+                </Box>
+            </Modal>
+
+            <Modal
+                open={editOpen}
+                onClose={handleEditClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={styled}>
+                    <input value={editCustomCategory} onChange={onChangeEditCustomCategory} type="text" placeholder="카테고리 이름을 입력해주세요"/>
+                    <Button onClick={onSubmitEditCustomCategory}>수정</Button>
                 </Box>
             </Modal>
         </div>

@@ -8,7 +8,7 @@ import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-const EditCloth = ({cloth, id}) => {
+const EditCloth = () => {
 
     const [currentCustomCategory, setCurrentCustomCategory] = useState([]);
     axios.get("/api/customcategory/list/")
@@ -23,15 +23,21 @@ const EditCloth = ({cloth, id}) => {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-    console.log(cloth.data);
-    // useEffect(() => {
-    //     setSeasonCategory(cloth.data.seasoncategory);
-    //     setPartCategory(cloth.data.partcategory);
-    //     setCustomCategory(cloth.data.customcategory);
-    //     setLocation(cloth.data.location);
-    //     setDescription(cloth.data.description);
-    //     setInputImg(cloth.data.imagepath);
-    //     }, [cloth])
+    const {id} = useParams();
+    useEffect(() => {
+        axios.get(`/api/cloth/read/${id}`)
+        .then(response => {
+            setSeasonCategory(response.data.seasoncategory);
+            setPartCategory(response.data.partcategory);
+            setCustomCategory(response.data.customcategory);
+            setLocation(response.data.location);
+            setDescription(response.data.description);
+            setInputImg(response.data.imagepath);
+        })
+        .catch(e => alert(e));
+    }, []);
+    
+    
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }

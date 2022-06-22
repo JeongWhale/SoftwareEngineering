@@ -1,0 +1,43 @@
+.clothListBlock{
+    margin-top: 4rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.clothDetailBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clothDetailTitle{
+    font-size: 3rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+.clothDetailContentBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clothDetailImg{
+    width: 250px;
+    margin-bottom: 2rem;
+}
+
+
+.clothDetailDataBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.clothDetailDataBlock span{
+    margin-bottom: 1rem;
+}
